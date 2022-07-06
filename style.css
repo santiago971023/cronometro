@@ -1,0 +1,230 @@
+/* 
+    Con este reset vamor a resolver:
+    Unificar el uso de Custom Properties
+    Problemas de Box Model mas generales
+    PRoblemas con tipografías y etiquetas input en formularios
+    Unificar la tipografía de todas las etiquetas de una web
+*/
+
+/* Aquí definimos las Custom Properties */
+
+:root{
+    --color-primario: #181818;
+    --color-secundario: #f0f0f0;
+
+    /* Tipografía */
+    --tipo-principal  : Helvetica, Arial, sans-serif;
+    --tipo-secundario : Verdana;
+}
+
+/*  Las adaptamos al modo oscuro  */
+@media(prefers-color-scheme: dark) {
+    :root {
+        --color-primario: #f0f0f0;
+        --color-secundario: #181818;
+
+    }
+}
+
+/*OPCIONAL*/
+/* Configuramos si un usuario a activado el modo de alto contraste */
+@media ( prefers-contrast: high) {
+    :root {
+        --color-primario: black;
+        --color-secundario: white;
+    }
+}
+
+/*OPCIONAL*/
+/* Desactivamos las animaciones en el caso que el usuario haya configurado el modo sin animaciones */
+@media ( prefers-reduced-motion: reduce ) {
+    *{
+        animation: none;
+        transition: none;
+    }
+}
+
+
+/* Reseteamos los margins y paddings de todas las etiquetas */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    vertical-align: baseline;
+}
+ 
+/* Evitando problemas con las imágenes */
+img , picture , video , iframe , figure {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+}
+
+/* Reseteamos los enlaces para funcionar como cajas */
+a {
+    display: block;
+}
+
+/* ...excepto los que se encuentran en párrafos */
+p a {
+    display: inline;
+}
+
+/* Quitamos los puntos de los li */
+li{
+    list-style-type: none;
+}
+
+
+ /* Configuramos anclas suaves */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Desactivamos estilos por defecto de las principales etiquetas de texto */
+h1 , h2 , h3 , h4 , h5 , h6 , p , span , a , strong , blockquote , i , b , u , em {
+    font-size: 1em;
+    font-weight: inherit;
+    font-style: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Evitamos problemas con los pseudoelementos de quotes */
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* Configuramos el texto que seleccionamos */
+::selection {
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+form , input , textarea , select , button , label {
+    font-family: inherit;
+    font-size: inherit;
+    hyphens: auto;
+    background-color: transparent;
+    display: block;
+    color: inherit;
+}
+
+/* Reseteamos las tablas */
+table , tr , td {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Evitamos problemas con los SVG */
+svg {
+    width: 100%;
+    display: block;
+    fill: currentColor;
+}
+
+/* Configuramos la tipografía para toda la web */
+body {
+    min-height: 100vh;
+    font-size: 100%;
+    font-family: var(--tipo-principal);
+    color: var(--color-primario);
+    background-color: var(--color-secundario);
+}
+
+/* --------- CRONÓMETRO ------------ */
+
+.container{
+    position: relative;
+    height: 650px;
+    width: 380px;
+    margin: 80px auto;
+    border: 2px solid white;
+    background-color: #a31b1b;
+}
+
+.cronometro{
+    
+    width: 250px;
+    height: 250px;
+    background-color: #181818;
+    border-radius: 50%;
+    margin: 200px auto;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* .cronometro::before {
+    content: '';
+    border-radius: 50%;
+    z-index: -1;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: calc(50%-150px);
+    top: calc(50%-150px);
+    background-color: #181818;
+    
+} */
+
+.display{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 40px;
+
+}
+
+.botones{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.boton{
+    
+    padding-left: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.svg{
+    width: 30px;
+    height: 30px;
+    padding-left: 0px;
+}
+
+.svg:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.segundero{
+    width: 20px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    position:absolute;
+    left: calc(50% -10px);
+    top: calc(50% -10px);
+    animation: rotation 60s linear infinite;
+    animation-play-state: paused;
+    
+    
+    
+    
+}
+
+@keyframes rotation {
+    from{ 
+        transform: rotate(-90deg) translate(125px)}
+    to{
+        transform: rotate(270deg) translate(125px);
+    }
+}
+
